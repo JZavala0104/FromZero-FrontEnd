@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios-list',
+  standalone: true,
   imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './usuarios-list.html',
   styleUrl: './usuarios-list.css',
@@ -26,6 +27,13 @@ export class UsuariosList implements OnInit {
       next: (data) => {
         this.dataSource.data = data;
       },
+    });
+  }
+  deleteUsuario(id: number) {
+    this.uS.delete(id).subscribe((data) => {
+      this.uS.list().subscribe((data) => {
+        this.dataSource.data = data;
+      });
     });
   }
 }

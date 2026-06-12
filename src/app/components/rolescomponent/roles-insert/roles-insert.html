@@ -1,0 +1,14 @@
+<div>
+    <div>
+        <h2>Registrar Rol</h2>
+    </div>
+    <div>
+        <form [formGroup]="rolesForm" (submit)="insertar()">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Registrar</button>
+        </form>
+    </div>
+</div>

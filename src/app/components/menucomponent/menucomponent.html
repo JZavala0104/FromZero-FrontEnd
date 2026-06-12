@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-toolbar class="custom-toolbar">
+    <button matButton class="btn-rojo" [matMenuTriggerFor]="menuFromZero">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>From Zero</span>
+  </mat-toolbar>
+  <mat-menu #menuFromZero="matMenu">
+    <button mat-menu-item routerLink="/usuarios/listar">
+      <mat-icon>person</mat-icon>
+      <span>Usuarios</span>
+    </button>
+    <button mat-menu-item routerLink="/roles/listar">
+      <mat-icon>list</mat-icon>
+      <span>Roles</span>
+    </button>
+  </mat-menu>
+</div>

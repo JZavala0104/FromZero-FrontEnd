@@ -1,0 +1,60 @@
+/* =========================================
+   menucomponent.css
+   ========================================= */
+
+/* Opcional: si el menú tiene su propio div.container, le quitamos el fondo de caja para que la barra ocupe bien el espacio */
+.container {
+  margin-bottom: 20px;
+}
+
+.custom-toolbar {
+  background-color: #0a0f16 !important;
+  color: #66fcf1 !important;
+  border-bottom: 1px solid #45a29e;
+  box-shadow: 0 4px 15px rgba(102, 252, 241, 0.15);
+  font-family: 'Consolas', 'Courier New', monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.custom-toolbar span {
+  text-shadow: 0 0 8px rgba(102, 252, 241, 0.5);
+  margin-left: 10px;
+}
+
+/* Botón hamburguesa del menú */
+.custom-toolbar button {
+  color: #66fcf1 !important;
+  transition: all 0.3s ease;
+}
+
+.custom-toolbar button:hover {
+  text-shadow: 0 0 10px #66fcf1;
+}
+
+/* Modificar el panel desplegable del menú (requiere ::ng-deep) */
+::ng-deep .mat-mdc-menu-panel, 
+::ng-deep .mat-menu-panel {
+  background-color: #0a0f16 !important;
+  border: 1px solid #45a29e !important;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.2) !important;
+}
+
+::ng-deep .mat-mdc-menu-item,
+::ng-deep .mat-menu-item {
+  color: #c5c6c7 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .mat-mdc-menu-item:hover,
+::ng-deep .mat-menu-item:hover {
+  background-color: #1a2433 !important;
+  color: #66fcf1 !important;
+  text-shadow: 0 0 8px rgba(102, 252, 241, 0.6) !important;
+}
+
+::ng-deep .mat-mdc-menu-item mat-icon,
+::ng-deep .mat-menu-item mat-icon {
+  color: inherit !important; /* El icono toma el color del texto */
+}

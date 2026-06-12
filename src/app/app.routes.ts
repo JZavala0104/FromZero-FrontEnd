@@ -6,6 +6,9 @@ import { UsuariosInsert } from './components/usuarioscomponent/usuarios-insert/u
 import { Rolescomponent } from './components/rolescomponent/rolescomponent';
 import { RolesList } from './components/rolescomponent/roles-list/roles-list';
 import { RolesInsert } from './components/rolescomponent/roles-insert/roles-insert';
+import { Proyectoscomponent } from './components/proyectoscomponent/proyectoscomponent';
+import { ProyectosList } from './components/proyectoscomponent/proyectos-list/proyectos-list';
+import { ProyectosInsert } from './components/proyectoscomponent/proyectos-insert/proyectos-insert';
 
 export const routes: Routes = [
     {
@@ -42,6 +45,20 @@ export const routes: Routes = [
             {
                 path:'registrar',
                 component:UsuariosInsert
+            }
+        ]
+    },
+    {
+        path:'proyectos',
+        component:Proyectoscomponent,
+        children:[
+            {
+                path:'listar',
+                component:ProyectosList
+            },
+            {
+                path:'registrar',
+                component:ProyectosInsert
             }
         ]
     }

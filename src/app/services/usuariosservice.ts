@@ -16,4 +16,12 @@ export class Usuariosservice {
   list() {
     return this.http.get<Usuarios[]>(`${this.url}/Get`);
   }
+  listById(id: number) {}
+  insert(usuario: Usuarios) {
+    return this.http.post(`${this.url}/Post`, usuario);
+  }
+  edit(usuario: Usuarios) {}
+  delete(id: number) {
+    return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });
+  }
 }

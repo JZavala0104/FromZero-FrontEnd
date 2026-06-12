@@ -11,11 +11,11 @@ import { Usuariosservice } from '../../../services/usuariosservice';
 import { Usuarios } from '../../../models/Usuarios';
 import { MatSelectModule } from '@angular/material/select';
 import { Rolesservice } from '../../../services/rolesservice';
-import { Roles } from '../../../models/Roles';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios-insert',
+  standalone: true,
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -32,20 +32,38 @@ import { Router } from '@angular/router';
 })
 export class UsuariosInsert implements OnInit {
   hide = signal(true);
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
-  }
-  userForm: FormGroup = new FormGroup({});
+  
+  // Variables de clase
+  userForm: FormGroup;
   user: Usuarios = new Usuarios();
-  listaRoles: Roles[] = [];
+  listaRoles: any[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private uS: Usuariosservice,
     private rS: Rolesservice,
     private router: Router
-  ) {}
+  ) {
+    // 1. SOLUCIÓN NG0100: Inicializamos el formulario inmediatamente
+    // para que la vista HTML ya tenga la estructura antes de dibujar
+    this.userForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      fechaRegistro: ['', Validators.required],
+      habilitado: [true, Validators.required], // Mejor usar true o false en lugar de vacío
+      idRol: [null, Validators.required],      // null es ideal para selects sin elegir
+    });
+  }
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
   ngOnInit(): void {
+    // Solo dejamos la petición asíncrona aquí
     this.rS.list().subscribe({
       next: (data) => {
         this.listaRoles = data;
@@ -54,16 +72,8 @@ export class UsuariosInsert implements OnInit {
         console.error('Error al cargar roles', err);
       },
     });
-    this.userForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      nombre: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      fechaRegistro: ['', Validators.required],
-      habilitado: [false, Validators.required],
-      idRol: [0, Validators.required],
-    });
   }
+
   insertar() {
     if (this.userForm.valid) {
       this.user.Username = this.userForm.value.username;
@@ -72,12 +82,13 @@ export class UsuariosInsert implements OnInit {
       this.user.password = this.userForm.value.password;
       this.user.fechaRegistro = this.userForm.value.fechaRegistro;
       this.user.Habilitado = this.userForm.value.habilitado;
-      this.user.idRol = this.userForm.value.idRol;
+      this.user.idRol = this.userForm.value.idRol; 
+
       this.uS.insert(this.user).subscribe({
         next: (data) => {
           this.router.navigate(['/usuarios/listar']);
-        },
+        }
       });
-    }
+    } 
   }
 }

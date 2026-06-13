@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Proyectos } from '../models/Proyectos';
+import { Empresas } from '../models/Empresas';
 
 const base_url = environment.base;
 
 @Injectable({
   providedIn: 'root',
 })
-export class Proyectosservice {
-  private url = `${base_url}/api/proyectos`;
+export class Empresasservice {
+  private url = `${base_url}/api/empresas`;
 
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<Proyectos[]>(`${this.url}/Get`);
+    return this.http.get<Empresas[]>(`${this.url}/Get`);
   }
   listById(id: number) {
-    return this.http.get<Proyectos>(`${this.url}/Get/${id}`);
+    return this.http.get<Empresas>(`${this.url}/Get/${id}`);
   }
-  insert(proyecto: Proyectos) {
-    return this.http.post(`${this.url}/Post`, proyecto);
+  insert(empresa: Empresas) {
+    return this.http.post(`${this.url}/Post`, empresa);
   }
-  update(proyecto: Proyectos) {
-    return this.http.put(`${this.url}/Put`, proyecto, { responseType: 'text' });
+  update(empresa: Empresas) {
+    return this.http.put(`${this.url}/Put`, empresa, { responseType: 'text' });
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });

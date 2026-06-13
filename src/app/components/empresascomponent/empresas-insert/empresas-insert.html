@@ -1,0 +1,22 @@
+<div class="container">
+  <div>
+    <h2>Registrar Empresa</h2>
+  </div>
+  <div>
+    <form [formGroup]="empresasForm" (submit)="insertar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre Empresa</mat-label>
+        <input matInput formControlName="nombreEmpresa" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Id Usuario</mat-label>
+        <input matInput formControlName="idUser" type="number" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </form>
+  </div>
+</div>

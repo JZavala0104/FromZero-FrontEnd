@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <h2>Editar Proyecto</h2>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="actualizar()">
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="idProject" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput formControlName="fechaInicio" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Fin</mat-label>
+        <input matInput formControlName="fechaFin" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Presupuesto</mat-label>
+        <input matInput formControlName="presupuesto" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Id Empresa</mat-label>
+        <input matInput formControlName="idEmpresa" type="number" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Actualizar</button>
+    </form>
+  </div>
+</div>

@@ -6,6 +6,13 @@ import { UsuariosInsert } from './components/usuarioscomponent/usuarios-insert/u
 import { Rolescomponent } from './components/rolescomponent/rolescomponent';
 import { RolesList } from './components/rolescomponent/roles-list/roles-list';
 import { RolesInsert } from './components/rolescomponent/roles-insert/roles-insert';
+import { Proyectoscomponent } from './components/proyectoscomponent/proyectoscomponent';
+import { ProyectosList } from './components/proyectoscomponent/proyectos-list/proyectos-list';
+import { ProyectosInsert } from './components/proyectoscomponent/proyectos-insert/proyectos-insert';
+import { ProyectosUpdate } from './components/proyectoscomponent/proyectos-update/proyectos-update';
+import { Empresascomponent } from './components/empresascomponent/empresascomponent';
+import { EmpresasList } from './components/empresascomponent/empresas-list/empresas-list';
+import { EmpresasInsert } from './components/empresascomponent/empresas-insert/empresas-insert';
 
 export const routes: Routes = [
     {
@@ -21,28 +28,33 @@ export const routes: Routes = [
         path: 'roles',
         component: Rolescomponent,
         children:[
-            {
-                path:'listar',
-                component:RolesList
-            },
-            {
-                path:'registrar',
-                component:RolesInsert
-            }
+            { path:'listar', component:RolesList },
+            { path:'registrar', component:RolesInsert }
         ]
     },
     {
         path:'usuarios',
         component:Usuarioscomponent,
         children:[
-            {
-                path:'listar',
-                component:UsuariosList
-            },
-            {
-                path:'registrar',
-                component:UsuariosInsert
-            }
+            { path:'listar', component:UsuariosList },
+            { path:'registrar', component:UsuariosInsert }
+        ]
+    },
+    {
+        path:'proyectos',
+        component:Proyectoscomponent,
+        children:[
+            { path:'listar', component:ProyectosList },
+            { path:'registrar', component:ProyectosInsert },
+            { path:'editar/:id', component:ProyectosUpdate }
+        ]
+    },
+    {
+        path:'empresas',
+        component:Empresascomponent,
+        children:[
+            { path:'listar', component:EmpresasList },
+            { path:'registrar', component:EmpresasInsert }
         ]
     }
 ];

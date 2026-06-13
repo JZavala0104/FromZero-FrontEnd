@@ -13,6 +13,8 @@ import { ProyectosUpdate } from './components/proyectoscomponent/proyectos-updat
 import { Empresascomponent } from './components/empresascomponent/empresascomponent';
 import { EmpresasList } from './components/empresascomponent/empresas-list/empresas-list';
 import { EmpresasInsert } from './components/empresascomponent/empresas-insert/empresas-insert';
+import { RolesUpdate } from './components/rolescomponent/roles-update/roles-update';
+import { UsuariosUpdate } from './components/usuarioscomponent/usuarios-update/usuarios-update';
 
 export const routes: Routes = [
     {
@@ -29,7 +31,8 @@ export const routes: Routes = [
         component: Rolescomponent,
         children:[
             { path:'listar', component:RolesList },
-            { path:'registrar', component:RolesInsert }
+            { path:'registrar', component:RolesInsert },
+            { path:'editar/:id', component:RolesUpdate }
         ]
     },
     {
@@ -37,7 +40,8 @@ export const routes: Routes = [
         component:Usuarioscomponent,
         children:[
             { path:'listar', component:UsuariosList },
-            { path:'registrar', component:UsuariosInsert }
+            { path:'registrar', component:UsuariosInsert },
+            { path:'editar/:id', component:UsuariosUpdate }
         ]
     },
     {

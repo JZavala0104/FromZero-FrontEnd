@@ -114,3 +114,14 @@
   box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
   border-radius: 50%;
 }
+
+::ng-deep .mat-column-c3 button[mat-icon-button] {
+  color: #fce803 !important; 
+}
+
+::ng-deep .mat-column-c3 button[mat-icon-button]:hover {
+  color: #0a0f16 !important;
+  background-color: #fce803 !important;
+  box-shadow: 0 0 10px #fce803, 0 0 20px #fce803;
+  border-radius: 50%;
+}

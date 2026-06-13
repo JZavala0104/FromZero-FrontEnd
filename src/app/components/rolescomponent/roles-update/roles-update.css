@@ -1,17 +1,17 @@
 /* =========================================
-   proyectos-editar.css (Formulario de Edición)
+   roles-editar.css (Formulario de Edición)
    ========================================= */
 
-/* Contenedor Principal */
+/* Contenedor Principal (Tamaño compacto) */
 .container {
   background-color: #0a0f16;
   color: #66fcf1;
   font-family: 'Consolas', 'Courier New', monospace;
-  padding: 35px 40px;
+  padding: 40px;
   border-radius: 5px;
   border: 1px solid #1f2833;
   box-shadow: 0 0 20px rgba(102, 252, 241, 0.1), inset 0 0 15px rgba(102, 252, 241, 0.05);
-  max-width: 650px; /* Un poco más ancho para dar respiro a los 8 campos */
+  max-width: 500px; 
   margin: 40px auto; 
 }
 
@@ -21,27 +21,28 @@
   letter-spacing: 3px;
   color: #c5c6c7;
   text-shadow: 0 0 8px rgba(197, 198, 199, 0.6);
-  border-bottom: 2px dashed #fce803; /* Línea amarilla para indicar "Edición" */
+  border-bottom: 2px dashed #45a29e;
   padding-bottom: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
-/* Estructura del Formulario */
+/* Estructura del Formulario - Usando Grid para acomodar los 2 botones */
 .container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Gap reducido un poco porque son muchos campos */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Crea dos columnas iguales */
+  gap: 20px;
 }
 
-/* =========================================
-   Estilos de los Inputs (Angular Material)
-   ========================================= */
+/* El campo de texto ocupa toda la fila (ambas columnas) */
 ::ng-deep .mat-mdc-form-field {
+  grid-column: 1 / span 2;
   width: 100%;
 }
 
-/* Fondo de los campos de texto */
+/* =========================================
+   Estilos del Input (Angular Material)
+   ========================================= */
 ::ng-deep .mdc-text-field--filled {
   background-color: #111822 !important; 
   border: 1px solid #45a29e !important;
@@ -50,43 +51,24 @@
   border-top-right-radius: 4px;
 }
 
-/* Label (Textos descriptivos) */
 ::ng-deep .mdc-floating-label {
   color: #45a29e !important;
   font-family: 'Consolas', 'Courier New', monospace !important;
   letter-spacing: 1px;
 }
 
-/* Label cuando está activo/flotando */
 ::ng-deep .mdc-floating-label--float-above {
   color: #66fcf1 !important;
   text-shadow: 0 0 5px rgba(102, 252, 241, 0.5);
 }
 
-/* El texto que escribe el usuario */
 ::ng-deep .mat-mdc-input-element,
 ::ng-deep .mdc-text-field__input {
   color: #ffffff !important;
   font-family: 'Consolas', 'Courier New', monospace !important;
-  font-size: 15px !important;
+  font-size: 16px !important;
 }
 
-/* TRATAMIENTO ESPECIAL PARA CAMPOS READONLY (ID) 
-   Hace que el texto del ID se vea grisáceo para indicar que no se edita
-*/
-::ng-deep input[readonly] {
-  color: #8892b0 !important; 
-  opacity: 0.8;
-}
-
-/* Quitar las flechas de incremento/decremento de los inputs tipo "number" */
-::ng-deep input[type=number]::-webkit-inner-spin-button, 
-::ng-deep input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-
-/* La línea base del input */
 ::ng-deep .mdc-line-ripple::before {
   border-bottom-color: #45a29e !important;
 }
@@ -97,28 +79,56 @@
 }
 
 /* =========================================
-   Botón Actualizar (Color Amarillo/Edición)
+   Botones (Cyberpunk)
    ========================================= */
-.container button[type="submit"] {
+
+/* Estilo general compartido para ambos botones */
+.container button {
   background-color: transparent !important;
-  color: #fce803 !important; /* Amarillo Neón */
-  border: 1px solid #fce803 !important;
   border-radius: 4px;
   transition: all 0.3s ease;
   text-transform: uppercase;
   font-family: 'Consolas', 'Courier New', monospace;
-  
   padding: 15px !important;
-  font-size: 16px !important;
-  letter-spacing: 3px;
+  font-size: 15px !important;
+  letter-spacing: 2px;
   font-weight: bold;
   height: auto !important;
   box-shadow: none !important;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
-.container button[type="submit"]:hover {
-  background-color: #fce803 !important;
+/* Botón CANCELAR (Rojo/Magenta Neón) 
+   Apunta al botón que NO tiene color="primary" */
+.container button:not([color="primary"]) {
+  color: #ff0055 !important;
+  border: 1px solid #ff0055 !important;
+}
+
+.container button:not([color="primary"]):hover {
+  background-color: #ff0055 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px #ff0055 !important;
+  text-shadow: 0 0 5px #ffffff !important;
+}
+
+/* Botón ACTUALIZAR (Cian Neón) 
+   Apunta al botón que SI tiene color="primary" */
+.container button[color="primary"] {
+  color: #66fcf1 !important;
+  border: 1px solid #66fcf1 !important;
+}
+
+.container button[color="primary"]:hover {
+  background-color: #66fcf1 !important;
   color: #0a0f16 !important;
-  box-shadow: 0 0 20px #fce803 !important;
+  box-shadow: 0 0 20px #66fcf1 !important;
+}
+
+/* Para pantallas de celular, apilar los botones uno sobre otro */
+@media (max-width: 450px) {
+  .container form {
+    display: flex;
+    flex-direction: column;
+  }
 }

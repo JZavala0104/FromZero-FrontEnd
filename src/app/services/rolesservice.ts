@@ -16,10 +16,15 @@ export class Rolesservice {
   list() {
     return this.http.get<Roles[]>(`${this.url}/Get`);
   }
-  listById(id: number) {}
+  listById(id: number) {
+    return this.http.get<Roles>(`${this.url}/Get/${id}`);
+  }
   insert(roles: Roles) {
     return this.http.post(`${this.url}/Post`, roles);
   }
+  update(roles: Roles) {
+    return this.http.put(`${this.url}/Put`, roles,{ responseType: 'text' });
+  } 
   edit(roles: Roles) {}
   delete(id: number) {
     return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });

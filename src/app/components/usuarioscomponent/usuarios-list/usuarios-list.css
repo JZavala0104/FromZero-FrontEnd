@@ -109,6 +109,18 @@
   transition: all 0.3s ease;
 }
 
+::ng-deep .mat-column-c8 button[mat-icon-button] {
+  color: #fce803 !important; 
+}
+
+::ng-deep .mat-column-c8 button[mat-icon-button]:hover {
+  color: #0a0f16 !important;
+  background-color: #fce803 !important;
+  box-shadow: 0 0 10px #fce803, 0 0 20px #fce803;
+  border-radius: 50%;
+}
+
+
 ::ng-deep button[mat-icon-button]:hover {
   color: #ffffff !important;
   text-shadow: 0 0 8px #ffffff;

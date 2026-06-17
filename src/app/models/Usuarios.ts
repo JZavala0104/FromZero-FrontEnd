@@ -1,10 +1,10 @@
 export class Usuarios {
-  IdUser: number = 0;        // ← I mayúscula
-  Username: string = '';     // ← U mayúscula
+  idUser: number = 0;
+  username: string = '';
   nombre: string = '';
   email: string = '';
   password: string = '';
   fechaRegistro: Date = new Date();
-  Habilitado: boolean = false;  // ← H mayúscula
+  habilitado: boolean = false;
   idRol: number = 0;
 }

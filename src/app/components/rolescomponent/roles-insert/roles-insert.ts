@@ -32,7 +32,7 @@ export class RolesInsert implements OnInit {
   }
   insertar(){
     if(this.rolesForm.valid){
-      this.role.nombre = this.rolesForm.value.nombre;
+      this.role.nombre = this.rolesForm.value.nombre.toUpperCase();
       this.rS.insert(this.role).subscribe((data) => {
         this.router.navigate(['/roles/listar']);
       });

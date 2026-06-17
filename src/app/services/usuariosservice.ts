@@ -16,11 +16,15 @@ export class Usuariosservice {
   list() {
     return this.http.get<Usuarios[]>(`${this.url}/Get`);
   }
-  listById(id: number) {}
+  listById(id: number) {
+    return this.http.get<Usuarios>(`${this.url}/Get/${id}`);
+  }
   insert(usuario: Usuarios) {
     return this.http.post(`${this.url}/Post`, usuario);
   }
-  edit(usuario: Usuarios) {}
+  update(usuario: Usuarios) {
+    return this.http.put(`${this.url}/Put`, usuario, {responseType: 'text'});
+  }
   delete(id: number) {
     return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });
   }

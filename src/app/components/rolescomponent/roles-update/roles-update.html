@@ -1,0 +1,18 @@
+<div class="container"> <div>
+        <h2>Editar Rol</h2>
+    </div>
+    <div>
+        <form [formGroup]="rolesForm" (submit)="actualizar()">
+            <mat-form-field class="example-full-width">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="IdRol" readonly="true" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" required>
+            </mat-form-field>
+            <button mat-raised-button [routerLink]="['/roles/listar']">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit">Actualizar</button>
+        </form>
+    </div>
+</div>

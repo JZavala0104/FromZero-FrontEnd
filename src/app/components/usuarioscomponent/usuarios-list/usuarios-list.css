@@ -1,0 +1,130 @@
+/* =========================================
+   usuarios-list.css (Contenedor y Tabla de Usuarios)
+   ========================================= */
+.container {
+  background-color: #0a0f16;
+  color: #66fcf1;
+  font-family: 'Consolas', 'Courier New', monospace;
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px solid #1f2833;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.1), inset 0 0 15px rgba(102, 252, 241, 0.05);
+  max-width: 1200px; /* Aumentado para acomodar las 8 columnas */
+  margin: 20px auto; 
+  overflow-x: auto; /* Por si la pantalla es pequeña, permite deslizar la tabla */
+}
+
+/* Título de la sección */
+.container h2 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #c5c6c7;
+  text-shadow: 0 0 8px rgba(197, 198, 199, 0.6);
+  border-bottom: 2px dashed #45a29e;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+
+/* Botón Registrar (Grande, robusto y centrado internamente) */
+.container button[mat-menu-item] {
+  background-color: transparent !important;
+  color: #66fcf1 !important;
+  border: 1px solid #66fcf1 !important;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Consolas', 'Courier New', monospace;
+  
+  /* Flexbox para centrar perfectamente icono + texto */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* Ajuste de dimensiones */
+  padding: 12px 28px !important;
+  font-size: 15px !important;
+  letter-spacing: 2px;
+  height: auto !important;
+  width: auto !important;
+  gap: 8px; /* Separación limpia */
+}
+
+/* Forzar reinicio de márgenes molestos en el icono del botón */
+.container button[mat-menu-item] mat-icon {
+  margin: 0 !important;
+}
+
+.container button[mat-menu-item]:hover {
+  background-color: #66fcf1 !important;
+  color: #0a0f16 !important;
+  box-shadow: 0 0 15px #66fcf1;
+}
+
+/* Estructura base de la Tabla */
+.container .mat-elevation-z8, 
+.container table.mat-table,
+::ng-deep .mat-mdc-table {
+  background-color: #111822 !important; 
+  width: 100%;
+  border: 1px solid #45a29e;
+  border-collapse: collapse;
+  box-shadow: 0 0 15px rgba(69, 162, 158, 0.2) !important;
+}
+
+/* Encabezados de Tabla (Anula letras oscuras) */
+::ng-deep .mat-mdc-header-cell, 
+::ng-deep .mat-header-cell {
+  background-color: #0a0f16 !important;
+  color: #66fcf1 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #66fcf1 !important;
+  padding: 16px 10px !important;
+}
+
+/* Celdas de Datos (Anula letras oscuras) */
+::ng-deep .mat-mdc-cell, 
+::ng-deep .mat-cell {
+  color: #e0e2e4 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  border-bottom: 1px solid #1f2833 !important;
+  font-size: 14px !important;
+  padding: 16px 10px !important;
+  word-break: break-word; /* Ayuda a que el email no rompa la tabla si es muy largo */
+}
+
+/* Efecto hover interactivo en las filas de la tabla */
+::ng-deep .mat-mdc-row:hover,
+::ng-deep .mat-row:hover {
+  background-color: #1a2433 !important;
+}
+
+/* Botón de acción Eliminar (Estilo de alerta Neon Magenta) */
+::ng-deep .mat-mdc-icon-button,
+::ng-deep button[mat-icon-button] {
+  color: #ff0055 !important;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .mat-column-c8 button[mat-icon-button] {
+  color: #fce803 !important; 
+}
+
+::ng-deep .mat-column-c8 button[mat-icon-button]:hover {
+  color: #0a0f16 !important;
+  background-color: #fce803 !important;
+  box-shadow: 0 0 10px #fce803, 0 0 20px #fce803;
+  border-radius: 50%;
+}
+
+
+::ng-deep button[mat-icon-button]:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px #ffffff;
+  background-color: #ff0055 !important;
+  box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+  border-radius: 50%;
+}

@@ -12,6 +12,7 @@ import { Usuarios } from '../../../models/Usuarios';
 import { MatSelectModule } from '@angular/material/select';
 import { Rolesservice } from '../../../services/rolesservice';
 import { Router } from '@angular/router';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
   selector: 'app-usuarios-insert',
@@ -26,13 +27,19 @@ import { Router } from '@angular/router';
     MatSelectModule,
     ReactiveFormsModule,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'es-ES',
+    },
+  ],
   templateUrl: './usuarios-insert.html',
   styleUrl: './usuarios-insert.css',
 })
 export class UsuariosInsert implements OnInit {
   hide = signal(true);
-  
+
   // Variables de clase
   userForm: FormGroup;
   user: Usuarios = new Usuarios();
@@ -42,7 +49,7 @@ export class UsuariosInsert implements OnInit {
     private formBuilder: FormBuilder,
     private uS: Usuariosservice,
     private rS: Rolesservice,
-    private router: Router
+    private router: Router,
   ) {
     // 1. SOLUCIÓN NG0100: Inicializamos el formulario inmediatamente
     // para que la vista HTML ya tenga la estructura antes de dibujar
@@ -53,7 +60,7 @@ export class UsuariosInsert implements OnInit {
       password: ['', Validators.required],
       fechaRegistro: ['', Validators.required],
       habilitado: [true, Validators.required], // Mejor usar true o false en lugar de vacío
-      idRol: [null, Validators.required],      // null es ideal para selects sin elegir
+      idRol: [null, Validators.required], // null es ideal para selects sin elegir
     });
   }
 
@@ -63,7 +70,6 @@ export class UsuariosInsert implements OnInit {
   }
 
   ngOnInit(): void {
-    // Solo dejamos la petición asíncrona aquí
     this.rS.list().subscribe({
       next: (data) => {
         this.listaRoles = data;
@@ -76,19 +82,19 @@ export class UsuariosInsert implements OnInit {
 
   insertar() {
     if (this.userForm.valid) {
-      this.user.Username = this.userForm.value.username;
-      this.user.nombre = this.userForm.value.nombre;
-      this.user.email = this.userForm.value.email;
+      this.user.username = this.userForm.value.username.toUpperCase();
+      this.user.nombre = this.userForm.value.nombre.toUpperCase();
+      this.user.email = this.userForm.value.email.toUpperCase();
       this.user.password = this.userForm.value.password;
       this.user.fechaRegistro = this.userForm.value.fechaRegistro;
-      this.user.Habilitado = this.userForm.value.habilitado;
-      this.user.idRol = this.userForm.value.idRol; 
+      this.user.habilitado = this.userForm.value.habilitado;
+      this.user.idRol = this.userForm.value.idRol;
 
       this.uS.insert(this.user).subscribe({
         next: (data) => {
           this.router.navigate(['/usuarios/listar']);
-        }
+        },
       });
-    } 
+    }
   }
 }

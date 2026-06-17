@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
+import { Proyectos } from '../models/Proyectos';
+
+const base_url = environment.base;
+
+@Injectable({
+  providedIn: 'root',
+})
+
+export class Proyectodesarrolladorservice {
+  private url = `${base_url}/api/proyectodesarrollador`;
+
+  constructor(private http: HttpClient) {}
+
+  list() {
+    return this.http.get<Proyectos[]>(`${this.url}/Get`);
+  }
+  listById(id: number) {
+    return this.http.get<Proyectos>(`${this.url}/Get/${id}`);
+  }
+  insert(proyecto: Proyectos) {
+  return this.http.post(`${this.url}/Post`, proyecto);
+  }
+  update(proyecto: Proyectos) {
+    return this.http.put(`${this.url}/Put`, proyecto,{ responseType: 'text' });
+  } 
+  delete(id: number) {
+    return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });
+  }
+}

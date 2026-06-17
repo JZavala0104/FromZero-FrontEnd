@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+/* =========================================
+   styles.css (Archivo global)
+   ========================================= */
+body {
+  background-color: #05080c; /* Fondo global oscuro */
+  color: #c5c6c7;
+  margin: 0;
+  font-family: 'Consolas', 'Courier New', monospace;
+}

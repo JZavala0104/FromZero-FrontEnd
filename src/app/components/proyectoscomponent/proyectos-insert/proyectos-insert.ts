@@ -3,19 +3,23 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { Proyectos } from '../../../models/Proyectos';
 import { Proyectosservice } from '../../../services/proyectosservice';
 
 @Component({
   selector: 'app-proyectos-insert',
-  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
   templateUrl: './proyectos-insert.html',
   styleUrl: './proyectos-insert.css',
 })
 export class ProyectosInsert implements OnInit {
   proyectosForm: FormGroup = new FormGroup({});
   proyecto: Proyectos = new Proyectos();
+  estados: string[] = ['Activo', 'Inactivo'];
 
   constructor(
     private formBuilder: FormBuilder,

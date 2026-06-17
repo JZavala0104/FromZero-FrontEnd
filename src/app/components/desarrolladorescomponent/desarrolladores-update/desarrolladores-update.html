@@ -1,1 +1,30 @@
-<p>desarrolladores-update works!</p>
+<div class="container">
+  <div>
+    <h2>Editar Desarrollador</h2>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="actualizar()">
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="idDesarrollador" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Id Usuario</mat-label>
+        <input matInput formControlName="idUser" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Habilidades</mat-label>
+        <input matInput formControlName="habilidades" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Experiencia (años)</mat-label>
+        <input matInput formControlName="experiencia" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Portafolio</mat-label>
+        <input matInput formControlName="portafolio" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Actualizar</button>
+    </form>
+  </div>
+</div>

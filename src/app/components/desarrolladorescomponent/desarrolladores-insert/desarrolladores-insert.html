@@ -1,1 +1,26 @@
-<p>desarrolladores-insert works!</p>
+<div class="container">
+  <div>
+    <h2>Registrar Desarrollador</h2>
+  </div>
+  <div>
+    <form [formGroup]="desarrolladoresForm" (submit)="insertar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Id Usuario</mat-label>
+        <input matInput formControlName="idUser" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Habilidades</mat-label>
+        <input matInput formControlName="habilidades" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Experiencia (años)</mat-label>
+        <input matInput formControlName="experiencia" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Portafolio</mat-label>
+        <input matInput formControlName="portafolio" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </form>
+  </div>
+</div>

@@ -6,31 +6,39 @@
     <form [formGroup]="proyectosForm" (submit)="insertar()">
       <mat-form-field appearance="fill">
         <mat-label>Título</mat-label>
-        <input matInput formControlName="titulo" required>
+        <input matInput formControlName="titulo" required />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Descripción</mat-label>
-        <input matInput formControlName="descripcion" required>
+        <input matInput formControlName="descripcion" required />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Estado</mat-label>
-        <input matInput formControlName="estado" required>
+        <mat-select formControlName="estado" required>
+          @for (e of estados; track e) {
+            <mat-option [value]="e">{{ e }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Fecha Inicio</mat-label>
-        <input matInput formControlName="fechaInicio" required>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechaInicio" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Fecha Fin</mat-label>
-        <input matInput formControlName="fechaFin" required>
+        <input matInput [matDatepicker]="pickerFin" formControlName="fechaFin" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Presupuesto</mat-label>
-        <input matInput formControlName="presupuesto" type="number" required>
+        <input matInput formControlName="presupuesto" type="number" required />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Id Empresa</mat-label>
-        <input matInput formControlName="idEmpresa" type="number" required>
+        <input matInput formControlName="idEmpresa" type="number" required />
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">Registrar</button>
     </form>

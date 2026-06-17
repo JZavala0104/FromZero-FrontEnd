@@ -1,1 +1,41 @@
-<p>valoraciones-list works!</p>
+<div class="container">
+  <h2>Lista de Valoraciones</h2>
+  <button mat-menu-item routerLink="/valoraciones/registrar">
+    <mat-icon>add</mat-icon>
+    <span>Registrar Valoración</span>
+  </button>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.idValoracion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef>Id Proyecto</th>
+        <td mat-cell *matCellDef="let element">{{ element.idProyecto }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef>Puntuación</th>
+        <td mat-cell *matCellDef="let element">{{ element.puntuacion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [routerLink]="['/valoraciones/editar', element.idValoracion]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="deleteValoraciones(element.idValoracion)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

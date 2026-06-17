@@ -8,11 +8,11 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="c1">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.IdUser }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.idUser }}</td>
       </ng-container>
       <ng-container matColumnDef="c2">
         <th mat-header-cell *matHeaderCellDef>Username</th>
-        <td mat-cell *matCellDef="let element">{{ element.Username }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
       </ng-container>
       <ng-container matColumnDef="c3">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
@@ -28,7 +28,7 @@
       </ng-container>
       <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef>Habilitado</th>
-        <td mat-cell *matCellDef="let element">{{ element.Habilitado }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.habilitado }}</td>
       </ng-container>
       <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef>Rol</th>
@@ -37,7 +37,7 @@
       <ng-container matColumnDef="c8">
         <th mat-header-cell *matHeaderCellDef>Editar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button [routerLink]="['/usuarios/editar', element.IdUser]">
+          <button mat-icon-button [routerLink]="['/usuarios/editar', element.idUser]">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -45,7 +45,7 @@
       <ng-container matColumnDef="c9">
         <th mat-header-cell *matHeaderCellDef>Eliminar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button (click)="deleteUsuario(element.IdUser)">
+          <button mat-icon-button (click)="deleteUsuario(element.idUser)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

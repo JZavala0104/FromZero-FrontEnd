@@ -25,7 +25,6 @@ export class Rolesservice {
   update(roles: Roles) {
     return this.http.put(`${this.url}/Put`, roles,{ responseType: 'text' });
   } 
-  edit(roles: Roles) {}
   delete(id: number) {
     return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });
   }

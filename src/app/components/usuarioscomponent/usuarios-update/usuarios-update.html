@@ -1,1 +1,87 @@
-<p>usuarios-update works!</p>
+<div class="container">
+  <div>
+    <h2>Editar Usuario</h2>
+  </div>
+  <form [formGroup]="userForm" (submit)="actualizar()">
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="idUser" readonly="true" />
+    </mat-form-field>
+    <div class="row-2-cols">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required />
+        @if (userForm.get('username')?.hasError('required')) {
+          <mat-error>El username es obligatorio</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required />
+        @if (userForm.get('nombre')?.hasError('required')) {
+          <mat-error>El nombre es obligatorio</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput formControlName="email" required />
+      @if (userForm.get('email')?.hasError('required')) {
+        <mat-error>El correo electrónico es obligatorio</mat-error>
+      }
+      @if (userForm.get('email')?.hasError('email')) {
+        <mat-error>El correo electrónico no es válido</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+      @if (userForm.get('password')?.hasError('required')) {
+        <mat-error>La contraseña es obligatoria</mat-error>
+      }
+      <button
+        matIconButton
+        matSuffix
+        type="button"
+        (click)="clickEvent($event)"
+        [attr.aria-label]="hide() ? 'Hide password' : 'Show password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha Registro</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaRegistro" />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (userForm.get('fechaRegistro')?.hasError('required')) {
+        <mat-error>La fecha de registro es obligatoria</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="idRol" required>
+        @for (rol of listaRoles; track rol.idRol) {
+          <mat-option [value]="rol.idRol">
+            {{ rol.nombre }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (userForm.get('idRol')?.hasError('required')) {
+        <mat-error>El rol es obligatorio</mat-error>
+      }
+    </mat-form-field>
+    <mat-radio-group aria-label="Habilitado" formControlName="habilitado">
+      <mat-radio-button [value]="true">Activo</mat-radio-button>
+      <mat-radio-button [value]="false">Inactivo</mat-radio-button>
+    </mat-radio-group>
+    <div class="button-row">
+      <button mat-raised-button class="btn-cancelar" [routerLink]="['/usuarios/listar']">
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </div>
+  </form>
+</div>

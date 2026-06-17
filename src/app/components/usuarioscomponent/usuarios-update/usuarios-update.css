@@ -1,0 +1,310 @@
+/* =========================================
+   usuarios-insert.css (Formulario Completo)
+   ========================================= */
+
+/* Contenedor Principal */
+.container {
+  background-color: #0a0f16;
+  color: #66fcf1;
+  font-family: 'Consolas', 'Courier New', monospace;
+  padding: 40px;
+  border-radius: 5px;
+  border: 1px solid #1f2833;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.1), inset 0 0 15px rgba(102, 252, 241, 0.05);
+  max-width: 600px; /* Un poco más ancho que el de roles porque tiene más campos */
+  margin: 40px auto; 
+}
+
+/* Título */
+.container h2 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #c5c6c7;
+  text-shadow: 0 0 8px rgba(197, 198, 199, 0.6);
+  border-bottom: 2px dashed #45a29e;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Estructura del Formulario */
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================================
+   Inputs Básicos (Texto, Password, Fecha)
+   ========================================= */
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mdc-text-field--filled {
+  background-color: #111822 !important; 
+  border: 1px solid #45a29e !important;
+  border-bottom: none !important; 
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+::ng-deep .mdc-floating-label, 
+::ng-deep .mat-mdc-select-value-text {
+  color: #45a29e !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  letter-spacing: 1px;
+}
+
+::ng-deep .mdc-floating-label--float-above {
+  color: #66fcf1 !important;
+  text-shadow: 0 0 5px rgba(102, 252, 241, 0.5);
+}
+
+::ng-deep .mat-mdc-input-element,
+::ng-deep .mdc-text-field__input {
+  color: #ffffff !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .mdc-line-ripple::before {
+  border-bottom-color: #45a29e !important;
+}
+
+::ng-deep .mdc-line-ripple::after {
+  border-bottom-color: #66fcf1 !important;
+  box-shadow: 0 0 10px #66fcf1;
+}
+
+/* Texto de ayuda (Hint de fecha) */
+::ng-deep .mat-mdc-form-field-hint {
+  color: #45a29e !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+/* Iconos internos (Ojo de contraseña y Calendario) */
+::ng-deep .mat-mdc-icon-button,
+::ng-deep .mat-datepicker-toggle-default-icon {
+  color: #66fcf1 !important;
+}
+
+/* =========================================
+   Radio Buttons (Habilitado)
+   ========================================= */
+.container mat-radio-group {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0;
+  padding-left: 15px;
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  color: #c5c6c7 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+/* Círculo externo inactivo */
+::ng-deep .mdc-radio__outer-circle {
+  border-color: #45a29e !important;
+}
+
+/* Círculo activo (Seleccionado) */
+::ng-deep .mat-mdc-radio-checked .mdc-radio__outer-circle {
+  border-color: #66fcf1 !important;
+  box-shadow: 0 0 8px rgba(102, 252, 241, 0.5) !important;
+}
+
+::ng-deep .mat-mdc-radio-checked .mdc-radio__inner-circle {
+  background-color: #66fcf1 !important;
+  border-color: #66fcf1 !important;
+}
+
+/* =========================================
+   Select (Desplegable de Roles)
+   ========================================= */
+::ng-deep .mat-mdc-select-arrow {
+  color: #66fcf1 !important;
+}
+
+::ng-deep .mat-mdc-select-panel {
+  background-color: #0a0f16 !important;
+  border: 1px solid #45a29e !important;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.2) !important;
+}
+
+::ng-deep .mat-mdc-option {
+  color: #c5c6c7 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+::ng-deep .mat-mdc-option:hover, 
+::ng-deep .mat-mdc-option.mdc-list-item--selected {
+  background-color: #1a2433 !important;
+  color: #66fcf1 !important;
+  text-shadow: 0 0 5px rgba(102, 252, 241, 0.6) !important;
+}
+
+/* =========================================
+   Datepicker (Ventana del Calendario)
+   ========================================= */
+::ng-deep .mat-datepicker-content {
+  background-color: #0a0f16 !important;
+  border: 1px solid #45a29e !important;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.3) !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+::ng-deep .mat-calendar-table-header th, 
+::ng-deep .mat-calendar-body-cell-content {
+  color: #c5c6c7 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+::ng-deep .mat-calendar-body-cell:hover .mat-calendar-body-cell-content {
+  background-color: #1a2433 !important;
+  color: #66fcf1 !important;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #66fcf1 !important;
+  color: #0a0f16 !important;
+  font-weight: bold;
+}
+
+::ng-deep .mat-calendar-arrow {
+  fill: #66fcf1 !important;
+}
+
+::ng-deep .mat-calendar-previous-button, 
+::ng-deep .mat-calendar-next-button {
+  color: #66fcf1 !important;
+}
+
+/* =========================================
+   Botón Enviar (Cyberpunk)
+   ========================================= */
+.container button[type="submit"] {
+  background-color: transparent !important;
+  color: #66fcf1 !important;
+  border: 1px solid #66fcf1 !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Consolas', 'Courier New', monospace;
+  
+  padding: 15px !important;
+  font-size: 16px !important;
+  letter-spacing: 3px;
+  font-weight: bold;
+  height: auto !important;
+  box-shadow: none !important;
+  margin-top: 15px;
+}
+
+.container button[type="submit"]:hover {
+  background-color: #66fcf1 !important;
+  color: #0a0f16 !important;
+  box-shadow: 0 0 20px #66fcf1 !important;
+}
+
+/* =========================================
+   Distribución en Columnas
+   ========================================= */
+.row-2-cols {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Responsividad: En pantallas de celular, vuelve a 1 sola columna */
+@media (max-width: 500px) {
+  .container form {
+    display: flex;
+    flex-direction: column;
+  }
+  .row-2-cols {
+    flex-direction: column;
+  }
+  /* Agrega esto para que los botones se apilen en celulares */
+  .button-row {
+    flex-direction: column;
+  }
+}
+
+/* =========================================
+   Estilos para Campos con Error (Bordes y Labels)
+   ========================================= */
+
+/* 1. Cambia el borde de la caja principal */
+::ng-deep .mat-form-field-invalid .mdc-text-field--filled {
+  border: 1px solid #ff4655 !important;
+  box-shadow: inset 0 0 8px rgba(255, 70, 85, 0.1) !important; /* Un brillo interno sutil */
+}
+
+/* 2. Cambia la línea base inferior */
+::ng-deep .mat-form-field-invalid .mdc-line-ripple::before {
+  border-bottom-color: #ff4655 !important;
+}
+
+/* 3. Cambia la línea animada (cuando haces clic en el campo con error) */
+::ng-deep .mat-form-field-invalid .mdc-line-ripple::after {
+  border-bottom-color: #ff4655 !important;
+  box-shadow: 0 0 10px rgba(255, 70, 85, 0.8) !important;
+}
+
+/* 4. (Opcional pero recomendado) Cambia el color del Label (Ej: "Username*") a rojo */
+::ng-deep .mat-form-field-invalid .mdc-floating-label,
+::ng-deep .mat-form-field-invalid .mdc-floating-label--float-above {
+  color: #ff4655 !important;
+  text-shadow: 0 0 5px rgba(255, 70, 85, 0.5) !important;
+}
+
+/* Iconos internos (Ojo de contraseña y Calendario) */
+::ng-deep .mat-form-field-invalid .mat-mdc-icon-button,
+::ng-deep .mat-form-field-invalid .mat-datepicker-toggle-default-icon {
+  color:  #ff4655 !important;
+}
+/*BOTON CANCELAR*/
+/* Botón CANCELAR (Rojo/Magenta Neón) 
+   Apunta al botón que NO tiene color="primary" */
+.btn-cancelar:not([color="primary"]) {
+  color: #ff0055 !important;
+  border: 1px solid #ff0055 !important;
+}
+
+.btn-cancelar:not([color="primary"]):hover {
+  background-color: #ff0055 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px #ff0055 !important;
+  text-shadow: 0 0 5px #ffffff !important;
+}
+
+.btn-cancelar{
+  background-color: transparent !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Consolas', 'Courier New', monospace;
+  padding: 15px !important;
+  font-size: 15px !important;
+  letter-spacing: 2px;
+  font-weight: bold;
+  height: auto !important;
+  box-shadow: none !important;
+  margin-top: 10px;
+}
+/* =========================================
+   Fila de Botones
+   ========================================= */
+.button-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.button-row button {
+  flex: 1; /* Obliga a que ambos botones midan exactamente lo mismo (50% c/u) */
+  margin-top: 0 !important; /* Sobrescribe el margin-top individual anterior */
+}

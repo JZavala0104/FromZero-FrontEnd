@@ -1,1 +1,34 @@
-<p>tareas-update works!</p>
+<div class="container">
+  <div>
+    <h2>Editar Tarea</h2>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="actualizar()">
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="idTarea" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Id Proyecto</mat-label>
+        <input matInput formControlName="idProyecto" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Límite</mat-label>
+        <input matInput formControlName="fechaLimite" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Actualizar</button>
+    </form>
+  </div>
+</div>

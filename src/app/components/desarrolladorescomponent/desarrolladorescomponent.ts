@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-desarrolladorescomponent',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './desarrolladorescomponent.html',
   styleUrl: './desarrolladorescomponent.css',
 })

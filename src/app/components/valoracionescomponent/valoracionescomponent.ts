@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-valoracionescomponent',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './valoracionescomponent.html',
   styleUrl: './valoracionescomponent.css',
 })

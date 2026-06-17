@@ -1,1 +1,22 @@
-<p>valoraciones-insert works!</p>
+<div class="container">
+  <div>
+    <h2>Registrar Valoración</h2>
+  </div>
+  <div>
+    <form [formGroup]="valoracionesForm" (submit)="insertar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Id Proyecto</mat-label>
+        <input matInput formControlName="idProyecto" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Puntuación</mat-label>
+        <input matInput formControlName="puntuacion" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Comentario</mat-label>
+        <input matInput formControlName="comentario" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Registrar</button>
+    </form>
+  </div>
+</div>

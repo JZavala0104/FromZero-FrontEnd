@@ -1,1 +1,30 @@
-<p>revisiones-update works!</p>
+<div class="container">
+  <div>
+    <h2>Editar Revisión</h2>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="actualizar()">
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="idRevision" readonly />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Id Tarea</mat-label>
+        <input matInput formControlName="idTarea" type="number" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Comentario</mat-label>
+        <input matInput formControlName="comentar" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="estado" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha</mat-label>
+        <input matInput formControlName="fecha" required />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Actualizar</button>
+    </form>
+  </div>
+</div>

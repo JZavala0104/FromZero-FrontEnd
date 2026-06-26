@@ -4,4 +4,6 @@ export class Mensajes {
     idUser: number = 0;
     mensaje: string = '';
     fecha: Date = new Date();
+    //faltan agregar datos y atributos
+
 }

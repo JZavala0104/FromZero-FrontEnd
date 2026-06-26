@@ -1,1 +1,72 @@
-<p>proyectodesarrollador-update works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <div class="header-icon">
+      <mat-icon>edit_calendar</mat-icon>
+    </div>
+    <div class="header-text">
+      <h2>Editar Asignación</h2>
+      <p>Modifica los datos de esta asignación</p>
+    </div>
+    <button class="btn-back" routerLink="/proyectodesarrolladores/listar">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  @if (cargando) {
+    <div class="loading-state">
+      <mat-icon>hourglass_top</mat-icon>
+      <p>Cargando datos de la asignación...</p>
+    </div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="fz-form">
+
+      <!-- Proyecto -->
+      <div class="form-group">
+        <label class="fz-label">
+          <mat-icon>folder_open</mat-icon>
+          Proyecto
+        </label>
+        <select formControlName="idProyecto" class="fz-select" id="proydev-update-proyecto">
+          <option value="" disabled>Seleccionar proyecto...</option>
+          @for (p of proyectos; track p.idProject) {
+            <option [value]="p.idProject">{{ p.titulo }}</option>
+          }
+        </select>
+        @if (form.get('idProyecto')?.invalid && form.get('idProyecto')?.touched) {
+          <span class="error-msg">Selecciona un proyecto</span>
+        }
+      </div>
+
+      <!-- Desarrollador -->
+      <div class="form-group">
+        <label class="fz-label">
+          <mat-icon>code</mat-icon>
+          Desarrollador
+        </label>
+        <select formControlName="idDesarrollador" class="fz-select" id="proydev-update-desarrollador">
+          <option value="" disabled>Seleccionar desarrollador...</option>
+          @for (d of desarrolladores; track d.idDesarrollador) {
+            <option [value]="d.idDesarrollador">{{ getNombreDesarrollador(d) }}</option>
+          }
+        </select>
+        @if (form.get('idDesarrollador')?.invalid && form.get('idDesarrollador')?.touched) {
+          <span class="error-msg">Selecciona un desarrollador</span>
+        }
+      </div>
+
+      <!-- ACCIONES -->
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" routerLink="/proyectodesarrolladores/listar">
+          <mat-icon>close</mat-icon>
+          Cancelar
+        </button>
+        <button type="submit" class="btn-save" [disabled]="form.invalid" id="proydev-update-submit">
+          <mat-icon>save</mat-icon>
+          Guardar Cambios
+        </button>
+      </div>
+
+    </form>
+  }
+</div>

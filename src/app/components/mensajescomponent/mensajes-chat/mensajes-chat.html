@@ -1,0 +1,133 @@
+<div class="chat-wrapper">
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header class="chat-header">
+    <button mat-icon-button class="btn-back" (click)="volver()" matTooltip="Volver a mensajes">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="header-main">
+      <div class="project-avatar">
+        <mat-icon>folder_special</mat-icon>
+      </div>
+
+      <div class="project-info">
+        <h2>{{ proyecto?.titulo ?? 'Cargando proyecto…' }}</h2>
+        <p>
+          <mat-icon class="inline-icon">schedule</mat-icon>
+          {{ mensajes.length }} mensaje{{ mensajes.length !== 1 ? 's' : '' }} en este canal
+        </p>
+      </div>
+
+      <span class="header-chip">
+        <span class="chip-dot"></span>
+        Chat activo
+      </span>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ MESSAGES PANEL ═══════════════════════ -->
+  <section class="messages-panel" #messagesPanel>
+    <!-- Empty state -->
+    <div class="empty-messages" *ngIf="mensajes.length === 0 && !loading">
+      <mat-icon class="empty-icon">forum</mat-icon>
+      <p class="empty-title">Sin mensajes aún</p>
+      <p class="empty-sub">Sé el primero en escribir en este proyecto</p>
+    </div>
+
+    <!-- Loading state -->
+    <div class="empty-messages" *ngIf="loading">
+      <mat-icon class="empty-icon spin">sync</mat-icon>
+      <p class="empty-title">Cargando mensajes…</p>
+    </div>
+
+    <!-- Message bubbles -->
+    <ng-container *ngIf="!loading">
+      <div class="message-row" [class.my-message]="esMiMensaje(msg)" *ngFor="let msg of mensajes">
+        <!-- Avatar (only on received messages) -->
+        <div class="avatar-col" *ngIf="!esMiMensaje(msg)">
+          <div class="avatar-circle">
+            {{ getNombreUsuario(msg.idUser).charAt(0).toUpperCase() }}
+          </div>
+        </div>
+
+        <div class="message-bubble">
+          <div class="message-header">
+            <span class="sender">{{ getNombreUsuario(msg.idUser) }}</span>
+            <span class="time">{{ formatearFecha(msg.fecha) }}</span>
+          </div>
+          <p class="message-text">{{ msg.mensaje }}</p>
+
+          <!-- Delete button (only visible on hover) -->
+          <button
+            mat-icon-button
+            class="btn-delete-msg"
+            (click)="eliminarMensaje(msg.idMensaje)"
+            matTooltip="Eliminar mensaje"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+
+        <!-- Avatar placeholder right side for spacing -->
+        <div class="avatar-col" *ngIf="esMiMensaje(msg)">
+          <div class="avatar-circle my-avatar">
+            {{ getNombreUsuario(msg.idUser).charAt(0).toUpperCase() }}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Scroll anchor -->
+    <div #messagesEnd></div>
+  </section>
+
+  <!-- ═══════════════════════ INPUT BAR ═══════════════════════ -->
+  <footer class="chat-input-bar">
+    <form [formGroup]="chatForm" (ngSubmit)="enviarMensaje()" class="input-form">
+      <!-- User selector -->
+      <div class="user-select-wrapper">
+        <mat-icon class="user-icon">person</mat-icon>
+        <mat-select
+          formControlName="usuarioId"
+          placeholder="Yo soy…"
+          panelClass="fz-select-panel"
+          [disabled]="cargandoUsuarios"
+        >
+          @if (cargandoUsuarios) {
+            <mat-option disabled> Cargando usuarios... </mat-option>
+          }
+
+          @if (!cargandoUsuarios && usuarios.length === 0) {
+            <mat-option disabled> No hay usuarios disponibles </mat-option>
+          }
+
+          @for (u of usuarios; track u.idUser) {
+            <mat-option [value]="u.idUser">
+              {{ u.nombre }}
+            </mat-option>
+          }
+        </mat-select>
+      </div>
+
+      <!-- Message input -->
+      <input
+        class="message-input"
+        type="text"
+        formControlName="contenido"
+        placeholder="Escribe un mensaje…"
+        autocomplete="off"
+        (keydown.enter)="enviarMensaje()"
+      />
+
+      <!-- Send button -->
+      <button
+        type="submit"
+        class="btn-send"
+        [disabled]="chatForm.invalid"
+        matTooltip="Enviar mensaje"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </footer>
+</div>

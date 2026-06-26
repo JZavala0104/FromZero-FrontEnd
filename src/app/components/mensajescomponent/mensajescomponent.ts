@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-mensajescomponent',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './mensajescomponent.html',
   styleUrl: './mensajescomponent.css',
 })

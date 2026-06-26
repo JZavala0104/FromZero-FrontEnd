@@ -1,1 +1,104 @@
-<p>notificaciones-insert works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <div class="header-icon">
+      <mat-icon>add_alert</mat-icon>
+    </div>
+    <div class="header-text">
+      <h2>Nueva Notificación</h2>
+      <p>Crea una alerta o aviso para un usuario del sistema</p>
+    </div>
+    <button class="btn-back" routerLink="/notificaciones/listar">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="fz-form">
+    <!-- Usuario -->
+    <div class="form-group">
+      <label class="fz-label">
+        <mat-icon>person</mat-icon>
+        Usuario
+      </label>
+      <select
+        formControlName="idUser"
+        class="fz-select"
+        id="notif-insert-user"
+        [disabled]="cargandoUsuarios"
+      >
+        <option value="" disabled>
+          {{ cargandoUsuarios ? 'Cargando usuarios...' : 'Seleccionar usuario...' }}
+        </option>
+
+        @for (u of usuarios; track u.idUser) {
+          <option [value]="u.idUser">{{ u.nombre }} ({{ u.username }})</option>
+        }
+      </select>
+      @if (form.get('idUser')?.invalid && form.get('idUser')?.touched) {
+        <span class="error-msg">Selecciona un usuario</span>
+      }
+    </div>
+
+    <!-- Mensaje -->
+    <div class="form-group">
+      <label class="fz-label">
+        <mat-icon>message</mat-icon>
+        Mensaje de Notificación
+      </label>
+      <textarea
+        formControlName="mensaje"
+        class="fz-textarea"
+        id="notif-insert-mensaje"
+        placeholder="Escribe el contenido de la notificación..."
+        rows="4"
+      ></textarea>
+      @if (form.get('mensaje')?.invalid && form.get('mensaje')?.touched) {
+        <span class="error-msg">El mensaje es requerido (mín. 3 caracteres)</span>
+      }
+    </div>
+
+    <!-- Leído -->
+    <div class="form-group form-group-toggle">
+      <label class="fz-label">
+        <mat-icon>mark_email_read</mat-icon>
+        Estado
+      </label>
+      <div class="toggle-row">
+        <label class="toggle-switch" id="notif-insert-leido-label">
+          <input type="checkbox" formControlName="leido" id="notif-insert-leido" />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-text">{{ form.get('leido')?.value ? 'Leído' : 'No leído' }}</span>
+      </div>
+    </div>
+
+    <!-- Fecha -->
+    <div class="form-group">
+      <label class="fz-label">
+        <mat-icon>event</mat-icon>
+        Fecha
+      </label>
+      <input
+        type="datetime-local"
+        formControlName="fecha"
+        class="fz-input"
+        id="notif-insert-fecha"
+      />
+      @if (form.get('fecha')?.invalid && form.get('fecha')?.touched) {
+        <span class="error-msg">La fecha es requerida</span>
+      }
+    </div>
+
+    <!-- ACCIONES -->
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" routerLink="/notificaciones/listar">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button type="submit" class="btn-save" [disabled]="form.invalid" id="notif-insert-submit">
+        <mat-icon>save</mat-icon>
+        Guardar Notificación
+      </button>
+    </div>
+  </form>
+</div>

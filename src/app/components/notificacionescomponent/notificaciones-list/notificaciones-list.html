@@ -1,1 +1,130 @@
-<p>notificaciones-list works!</p>
+<div class="container">
+  <!-- HERO HEADER -->
+  <section class="page-hero">
+    <div class="hero-left">
+      <div class="hero-icon">
+        <mat-icon>notifications_active</mat-icon>
+      </div>
+
+      <div class="hero-text">
+        <span class="eyebrow">FROMZERO ALERT CENTER</span>
+        <h2>Notificaciones</h2>
+        <p>Alertas del ecosistema para usuarios, proyectos y comunicación interna.</p>
+      </div>
+    </div>
+
+    <button class="btn-registrar" routerLink="/notificaciones/registrar">
+      <mat-icon>add_circle_outline</mat-icon>
+      Nueva Notificación
+    </button>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <mat-icon>notifications</mat-icon>
+      <div>
+        <strong>{{ totalNotificaciones }}</strong>
+        <span>Total</span>
+      </div>
+    </div>
+
+    <div class="stat-card success">
+      <mat-icon>mark_email_read</mat-icon>
+      <div>
+        <strong>{{ totalLeidas }}</strong>
+        <span>Leídas</span>
+      </div>
+    </div>
+
+    <div class="stat-card danger">
+      <mat-icon>mark_email_unread</mat-icon>
+      <div>
+        <strong>{{ totalNoLeidas }}</strong>
+        <span>No leídas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPTY STATE -->
+  @if (cargandoNotificaciones) {
+    <div class="empty-state">
+      <mat-icon>sync</mat-icon>
+      <h3>Cargando notificaciones...</h3>
+      <p>Estamos obteniendo las alertas del sistema.</p>
+    </div>
+  }
+
+  @if (!cargandoNotificaciones && dataSource.data.length === 0) {
+    <div class="empty-state">
+      <mat-icon>notifications_none</mat-icon>
+      <h3>No hay notificaciones registradas</h3>
+      <p>Las alertas importantes del sistema aparecerán aquí.</p>
+    </div>
+  }
+
+  <!-- NOTIFICATION FEED -->
+  @if (dataSource.data.length > 0) {
+    <section class="notification-feed">
+      @for (e of dataSource.data; track e.idNotificacion) {
+        <article class="notification-card" [ngClass]="e.leido ? 'read' : 'unread'">
+          <div class="notification-status-line"></div>
+
+          <div class="notification-icon" [ngClass]="e.leido ? 'icon-read' : 'icon-unread'">
+            <mat-icon>{{ e.leido ? 'mark_email_read' : 'mark_email_unread' }}</mat-icon>
+          </div>
+
+          <div class="notification-content">
+            <div class="notification-top">
+              <div>
+                <span class="notification-id">#{{ e.idNotificacion }}</span>
+                <h3>
+                  {{ e.mensaje | slice: 0 : 75 }}{{ (e.mensaje || '').length > 75 ? '...' : '' }}
+                </h3>
+              </div>
+
+              <span class="status-badge" [ngClass]="e.leido ? 'leido' : 'no-leido'">
+                <mat-icon>{{ e.leido ? 'done_all' : 'fiber_manual_record' }}</mat-icon>
+                {{ e.leido ? 'Leído' : 'Pendiente' }}
+              </span>
+            </div>
+
+            <div class="notification-body">
+              <p>{{ e.mensaje }}</p>
+            </div>
+
+            <div class="notification-meta">
+              <span>
+                <mat-icon>person</mat-icon>
+                Usuario ID: {{ e.idUser }}
+              </span>
+
+              <span>
+                <mat-icon>event</mat-icon>
+                {{ e.fecha | date: 'dd/MM/yyyy HH:mm' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="notification-actions">
+            <button
+              mat-icon-button
+              class="btn-edit"
+              [routerLink]="['/notificaciones/editar', e.idNotificacion]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button
+              mat-icon-button
+              class="btn-delete"
+              (click)="deleteNotificacion(e.idNotificacion)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</div>

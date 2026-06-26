@@ -1,1 +1,99 @@
-<p>mensajes-list works!</p>
+<div class="mensajes-wrapper">
+
+  <!-- HEADER -->
+  <section class="mensajes-header">
+    <div class="header-left">
+      <div class="header-icon">
+        <mat-icon>forum</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1>Mensajes del Equipo</h1>
+        <p>Selecciona un proyecto para abrir el chat de comunicación</p>
+      </div>
+    </div>
+
+    <div class="header-chip">
+      <mat-icon>chat_bubble</mat-icon>
+      <span>
+        {{ cargandoProyectos ? 'Cargando...' : proyectos.length + ' Proyectos' }}
+      </span>
+    </div>
+  </section>
+
+  <!-- LOADING -->
+  @if (cargandoProyectos) {
+    <div class="empty-state">
+      <mat-icon>hourglass_empty</mat-icon>
+      <h3>Cargando proyectos...</h3>
+      <p>Estamos obteniendo los proyectos disponibles para el chat.</p>
+    </div>
+  }
+
+  <!-- EMPTY STATE -->
+  @if (!cargandoProyectos && proyectos.length === 0) {
+    <div class="empty-state">
+      <mat-icon>inbox</mat-icon>
+      <h3>Sin proyectos disponibles</h3>
+      <p>No hay proyectos activos para mostrar en el chat.</p>
+    </div>
+  }
+
+  <!-- GRID DE PROYECTOS -->
+  @if (!cargandoProyectos && proyectos.length > 0) {
+    <section class="cards-grid">
+      @for (proyecto of proyectos; track proyecto.idProject) {
+        <article
+          class="project-card"
+          (click)="abrirChat(proyecto.idProject)"
+          id="project-card-{{ proyecto.idProject }}"
+        >
+
+          <!-- ICONO / AVATAR DEL PROYECTO -->
+          <div class="card-header">
+            <div class="project-avatar">
+              <mat-icon>code</mat-icon>
+            </div>
+
+            <div
+              class="status-badge"
+              [ngClass]="'status-' + (proyecto.estado || '').toLowerCase()"
+            >
+              {{ proyecto.estado }}
+            </div>
+          </div>
+
+          <!-- CUERPO -->
+          <div class="card-body">
+            <h3 class="card-title">{{ proyecto.titulo }}</h3>
+
+            <p class="card-desc">
+              {{ proyecto.descripcion | slice: 0:80 }}
+              {{ proyecto.descripcion && proyecto.descripcion.length > 80 ? '...' : '' }}
+            </p>
+
+            <div class="card-meta">
+              <div class="meta-item">
+                <mat-icon>attach_money</mat-icon>
+                <span>S/ {{ proyecto.presupuesto | number:'1.0-0' }}</span>
+              </div>
+
+              <div class="meta-item">
+                <mat-icon>calendar_today</mat-icon>
+                <span>{{ proyecto.fechaFin | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACCIÓN -->
+          <div class="card-footer">
+            <span class="chat-btn">
+              <mat-icon>chat</mat-icon>
+              Abrir Chat
+            </span>
+          </div>
+        </article>
+      }
+    </section>
+  }
+
+</div>

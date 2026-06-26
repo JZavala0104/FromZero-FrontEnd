@@ -1,1 +1,136 @@
-<p>proyectodesarrollador-list works!</p>
+<div class="container">
+  <!-- HERO HEADER -->
+  <section class="page-hero">
+    <div class="hero-left">
+      <div class="hero-icon">
+        <mat-icon>hub</mat-icon>
+      </div>
+
+      <div class="hero-text">
+        <span class="eyebrow">FROMZERO MATCHING</span>
+        <h2>Proyectos ↔ Desarrolladores</h2>
+        <p>Gestiona la conexión entre microempresarios y talento tecnológico disponible.</p>
+      </div>
+    </div>
+
+    <button class="btn-registrar" routerLink="/proyectodesarrolladores/registrar">
+      <mat-icon>add_circle_outline</mat-icon>
+      Nueva Asignación
+    </button>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <mat-icon>group_work</mat-icon>
+      <div>
+        <strong>{{ totalAsignaciones }}</strong>
+        <span>Asignaciones</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <mat-icon>folder_special</mat-icon>
+      <div>
+        <strong>{{ totalProyectosAsignados }}</strong>
+        <span>Proyectos vinculados</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <mat-icon>code</mat-icon>
+      <div>
+        <strong>{{ totalDesarrolladoresAsignados }}</strong>
+        <span>Desarrolladores activos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPTY STATE -->
+  @if (cargandoAsignaciones) {
+    <div class="empty-state">
+      <mat-icon>sync</mat-icon>
+      <h3>Cargando asignaciones...</h3>
+      <p>Estamos obteniendo los proyectos y desarrolladores vinculados.</p>
+    </div>
+  }
+
+  @if (!cargandoAsignaciones && dataSource.data.length === 0) {
+    <div class="empty-state">
+      <mat-icon>person_search</mat-icon>
+      <h3>No hay asignaciones registradas</h3>
+      <p>
+        Cuando asignes desarrolladores a proyectos, aparecerán aquí como tarjetas de colaboración.
+      </p>
+    </div>
+  }
+
+  <!-- VISUAL CARDS -->
+  @if (dataSource.data.length > 0) {
+    <section class="assignment-grid">
+      @for (e of dataSource.data; track e.idProyDesar) {
+        <article class="assignment-card">
+          <div class="card-top">
+            <span class="assignment-id">#{{ e.idProyDesar }}</span>
+
+            <div class="card-actions">
+              <button
+                mat-icon-button
+                class="btn-edit"
+                [routerLink]="['/proyectodesarrolladores/editar', e.idProyDesar]"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-icon-button class="btn-delete" (click)="deleteAsignacion(e.idProyDesar)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="connection-flow">
+            <!-- Proyecto -->
+            <div class="entity-box project-box">
+              <div class="entity-icon">
+                <mat-icon>folder_open</mat-icon>
+              </div>
+              <div class="entity-info">
+                <span class="entity-label">Proyecto</span>
+                <h3>{{ getNombreProyecto(e.idProyecto) }}</h3>
+                <p>ID Proyecto: {{ e.idProyecto }}</p>
+              </div>
+            </div>
+
+            <!-- Línea / conexión -->
+            <div class="connector">
+              <span></span>
+              <mat-icon>sync_alt</mat-icon>
+              <span></span>
+            </div>
+
+            <!-- Desarrollador -->
+            <div class="entity-box developer-box">
+              <div class="entity-icon">
+                <mat-icon>terminal</mat-icon>
+              </div>
+              <div class="entity-info">
+                <span class="entity-label">Desarrollador</span>
+                <h3>{{ getNombreDesarrollador(e.idDesarrollador) }}</h3>
+                <p>ID Dev: {{ e.idDesarrollador }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="status-chip">
+              <span class="pulse-dot"></span>
+              Match activo
+            </span>
+
+            <span class="footer-text"> Colaboración registrada en FromZero </span>
+          </div>
+        </article>
+      }
+    </section>
+  }
+</div>

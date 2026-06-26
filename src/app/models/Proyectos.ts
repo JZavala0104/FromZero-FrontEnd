@@ -1,5 +1,5 @@
 export class Proyectos {
-    IdProject: number = 0
+    idProject: number = 0
     titulo: string = ''
     descripcion: string = ''
     estado: string = ''

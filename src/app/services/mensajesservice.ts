@@ -20,12 +20,15 @@ export class Mensajesservice {
   listById(id: number) {
     return this.http.get<Mensajes>(`${this.url}/Get/${id}`);
   }
+  listByProyecto(idProyecto: number) {
+    return this.http.get<Mensajes[]>(`${this.url}/GetByProyecto/${idProyecto}`);
+  }
   insert(mensaje: Mensajes) {
-  return this.http.post(`${this.url}/Post`, mensaje);
+    return this.http.post<Mensajes>(`${this.url}/Post`, mensaje);
   }
   update(mensaje: Mensajes) {
-    return this.http.put(`${this.url}/Put`, mensaje,{ responseType: 'text' });
-  } 
+    return this.http.put(`${this.url}/Put`, mensaje, { responseType: 'text' });
+  }
   delete(id: number) {
     return this.http.delete(`${this.url}/Delete/${id}`, { responseType: 'text' });
   }

@@ -1,0 +1,57 @@
+/* notificaciones-insert.css — FromZero Palette */
+:host { display: block; min-height: 100vh; background: radial-gradient(ellipse at top, #0d1e2d 0%, #050d12 100%); font-family: 'Consolas', 'Courier New', monospace; }
+
+.form-container { max-width: 680px; margin: 0 auto; padding: 28px 32px; }
+
+.form-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; background: linear-gradient(135deg, #1a2e40 0%, #1A2228 100%); border-radius: 16px; padding: 18px 22px; border: 1px solid rgba(100,171,209,0.2); box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
+
+.header-icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #64ABD1, #70D0F7); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.header-icon mat-icon { color: #0a1218; font-size: 22px; }
+.header-text { flex: 1; }
+.header-text h2 { margin: 0; font-size: 18px; font-weight: 700; color: #e8f4fc; text-transform: uppercase; letter-spacing: 1px; }
+.header-text p { margin: 4px 0 0; font-size: 12px; color: #7ba8c4; }
+.btn-back { display: flex; align-items: center; gap: 6px; background: transparent; color: #577799; border: 1px solid rgba(87,119,153,0.4); border-radius: 8px; padding: 8px 14px; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+.btn-back:hover { color: #64ABD1; border-color: #64ABD1; }
+
+.fz-form { display: flex; flex-direction: column; gap: 20px; background: linear-gradient(160deg, #1e2e3a 0%, #1A2228 100%); border-radius: 16px; padding: 28px; border: 1px solid rgba(87,119,153,0.2); box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group-toggle { flex-direction: row; align-items: center; gap: 16px; }
+
+.fz-label { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #64ABD1; text-transform: uppercase; letter-spacing: 1.2px; }
+.fz-label mat-icon { font-size: 16px; height: 16px; width: 16px; }
+
+.fz-input, .fz-select, .fz-textarea {
+  background: #0d1a22;
+  border: 1px solid rgba(87,119,153,0.35);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #e8f4fc;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+.fz-textarea { resize: vertical; min-height: 100px; }
+.fz-input:focus, .fz-select:focus, .fz-textarea:focus { border-color: #64ABD1; box-shadow: 0 0 0 3px rgba(100,171,209,0.12); }
+.fz-select option { background: #0d1a22; color: #e8f4fc; }
+
+.toggle-row { display: flex; align-items: center; gap: 12px; }
+.toggle-switch { position: relative; display: inline-block; width: 46px; height: 24px; cursor: pointer; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: #1e3040; border-radius: 24px; border: 1px solid rgba(87,119,153,0.4); transition: 0.25s; }
+.toggle-slider:before { content: ''; position: absolute; height: 16px; width: 16px; left: 4px; bottom: 3px; background: #577799; border-radius: 50%; transition: 0.25s; }
+.toggle-switch input:checked + .toggle-slider { background: rgba(100,171,209,0.2); border-color: #64ABD1; }
+.toggle-switch input:checked + .toggle-slider:before { transform: translateX(21px); background: #64ABD1; }
+.toggle-text { font-size: 13px; color: #7ba8c4; min-width: 60px; }
+
+.error-msg { font-size: 11px; color: #e06060; letter-spacing: 0.5px; }
+
+.form-actions { display: flex; gap: 12px; justify-content: flex-end; padding-top: 8px; border-top: 1px solid rgba(87,119,153,0.15); margin-top: 4px; }
+.btn-cancel { display: flex; align-items: center; gap: 6px; background: transparent; color: #577799; border: 1px solid rgba(87,119,153,0.4); border-radius: 10px; padding: 10px 20px; font-family: inherit; font-size: 13px; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 1px; }
+.btn-cancel:hover { color: #e06060; border-color: #e06060; }
+.btn-save { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #64ABD1, #70D0F7); color: #0a1218; border: none; border-radius: 10px; padding: 10px 24px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.22s ease; text-transform: uppercase; letter-spacing: 1px; }
+.btn-save:hover:not(:disabled) { box-shadow: 0 0 20px rgba(112,208,247,0.4); transform: translateY(-1px); }
+.btn-save:disabled { opacity: 0.4; cursor: not-allowed; }

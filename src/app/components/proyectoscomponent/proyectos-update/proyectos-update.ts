@@ -45,7 +45,7 @@ export class ProyectosUpdate implements OnInit {
   init() {
     this.pS.listById(this.id).subscribe((data) => {
       this.form.patchValue({
-        idProject: data.IdProject,
+        idProject: data.idProject,
         titulo: data.titulo,
         descripcion: data.descripcion,
         estado: data.estado,
@@ -59,7 +59,7 @@ export class ProyectosUpdate implements OnInit {
 
   actualizar() {
     if (this.form.valid) {
-      this.proyecto.IdProject = this.form.value.idProject;
+      this.proyecto.idProject = this.form.value.idProject;
       this.proyecto.titulo = this.form.value.titulo;
       this.proyecto.descripcion = this.form.value.descripcion;
       this.proyecto.estado = this.form.value.estado;

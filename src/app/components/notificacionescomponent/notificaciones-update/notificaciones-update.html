@@ -1,1 +1,63 @@
-<p>notificaciones-update works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <div class="header-icon"><mat-icon>edit_notifications</mat-icon></div>
+    <div class="header-text">
+      <h2>Editar Notificación</h2>
+      <p>Modifica los datos de esta notificación</p>
+    </div>
+    <button class="btn-back" routerLink="/notificaciones/listar">
+      <mat-icon>arrow_back</mat-icon>Volver
+    </button>
+  </div>
+
+  @if (cargando) {
+    <div class="loading-state"><mat-icon>hourglass_top</mat-icon><p>Cargando...</p></div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="fz-form">
+
+      <div class="form-group">
+        <label class="fz-label"><mat-icon>person</mat-icon>Usuario</label>
+        <select formControlName="idUser" class="fz-select" id="notif-update-user">
+          <option value="" disabled>Seleccionar usuario...</option>
+          @for (u of usuarios; track u.idUser) {
+            <option [value]="u.idUser">{{ u.nombre }} ({{ u.username }})</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="fz-label"><mat-icon>message</mat-icon>Mensaje</label>
+        <textarea formControlName="mensaje" class="fz-textarea" id="notif-update-mensaje" rows="4"
+          placeholder="Contenido de la notificación..."></textarea>
+        @if (form.get('mensaje')?.invalid && form.get('mensaje')?.touched) {
+          <span class="error-msg">El mensaje es requerido</span>
+        }
+      </div>
+
+      <div class="form-group form-group-toggle">
+        <label class="fz-label"><mat-icon>mark_email_read</mat-icon>Estado</label>
+        <div class="toggle-row">
+          <label class="toggle-switch">
+            <input type="checkbox" formControlName="leido" id="notif-update-leido"/>
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-text">{{ form.get('leido')?.value ? 'Leído' : 'No leído' }}</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="fz-label"><mat-icon>event</mat-icon>Fecha</label>
+        <input type="datetime-local" formControlName="fecha" class="fz-input" id="notif-update-fecha"/>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" routerLink="/notificaciones/listar">
+          <mat-icon>close</mat-icon>Cancelar
+        </button>
+        <button type="submit" class="btn-save" [disabled]="form.invalid" id="notif-update-submit">
+          <mat-icon>save</mat-icon>Guardar Cambios
+        </button>
+      </div>
+    </form>
+  }
+</div>

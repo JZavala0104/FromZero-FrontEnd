@@ -27,6 +27,7 @@ import { Mensajescomponent } from './components/mensajescomponent/mensajescompon
 import { MensajesList } from './components/mensajescomponent/mensajes-list/mensajes-list';
 import { MensajesUpdate } from './components/mensajescomponent/mensajes-update/mensajes-update';
 import { MensajesInsert } from './components/mensajescomponent/mensajes-insert/mensajes-insert';
+import { MensajesChat } from './components/mensajescomponent/mensajes-chat/mensajes-chat';
 import { Notificacionescomponent } from './components/notificacionescomponent/notificacionescomponent';
 import { NotificacionesList } from './components/notificacionescomponent/notificaciones-list/notificaciones-list';
 import { NotificacionesInsert } from './components/notificacionescomponent/notificaciones-insert/notificaciones-insert';
@@ -87,6 +88,7 @@ export const routes: Routes = [
       { path: 'listar', component: MensajesList },
       { path: 'registrar', component: MensajesInsert },
       { path: 'editar/:id', component: MensajesUpdate },
+      { path: 'chat/:idProyecto', component: MensajesChat },
     ],
   },
   {

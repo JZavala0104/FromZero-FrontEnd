@@ -1,1 +1,83 @@
-<p>proyectodesarrollador-insert works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <div class="header-icon">
+      <mat-icon>group_add</mat-icon>
+    </div>
+    <div class="header-text">
+      <h2>Nueva Asignación</h2>
+      <p>Asigna un desarrollador a un proyecto activo</p>
+    </div>
+    <button class="btn-back" routerLink="/proyectodesarrolladores/listar">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="fz-form">
+    <!-- Proyecto -->
+    <div class="form-group">
+      <label class="fz-label">
+        <mat-icon>folder_open</mat-icon>
+        Proyecto
+      </label>
+      <select
+        formControlName="idProyecto"
+        class="fz-select"
+        id="proydev-insert-proyecto"
+        [disabled]="cargandoCatalogos"
+      >
+        <option value="" disabled>
+          {{ cargandoCatalogos ? 'Cargando proyectos...' : 'Seleccionar proyecto...' }}
+        </option>
+
+        @for (p of proyectos; track p.idProject) {
+          <option [value]="p.idProject">
+            {{ p.titulo }}
+          </option>
+        }
+      </select>
+      @if (form.get('idProyecto')?.invalid && form.get('idProyecto')?.touched) {
+        <span class="error-msg">Selecciona un proyecto</span>
+      }
+    </div>
+
+    <!-- Desarrollador -->
+    <div class="form-group">
+      <label class="fz-label">
+        <mat-icon>code</mat-icon>
+        Desarrollador
+      </label>
+      <select
+        formControlName="idDesarrollador"
+        class="fz-select"
+        id="proydev-insert-desarrollador"
+        [disabled]="cargandoCatalogos"
+      >
+        <option value="" disabled>
+          {{ cargandoCatalogos ? 'Cargando desarrolladores...' : 'Seleccionar desarrollador...' }}
+        </option>
+
+        @for (d of desarrolladores; track d.idDesarrollador) {
+          <option [value]="d.idDesarrollador">
+            {{ getNombreDesarrollador(d) }}
+          </option>
+        }
+      </select>
+      @if (form.get('idDesarrollador')?.invalid && form.get('idDesarrollador')?.touched) {
+        <span class="error-msg">Selecciona un desarrollador</span>
+      }
+    </div>
+
+    <!-- ACCIONES -->
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" routerLink="/proyectodesarrolladores/listar">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button type="submit" class="btn-save" [disabled]="form.invalid" id="proydev-insert-submit">
+        <mat-icon>save</mat-icon>
+        Guardar Asignación
+      </button>
+    </div>
+  </form>
+</div>

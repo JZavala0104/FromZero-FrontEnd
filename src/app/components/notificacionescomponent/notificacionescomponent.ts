@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-notificacionescomponent',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './notificacionescomponent.html',
   styleUrl: './notificacionescomponent.css',
 })
